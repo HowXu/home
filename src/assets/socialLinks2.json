@@ -1,0 +1,26 @@
+[
+  {
+    "name": "WYY",
+    "icon": "/images/icon/wyy.png",
+    "tip": "听点小曲",
+    "url": "https://music.163.com/#/user/home?id=1653714069"
+  },
+  {
+    "name": "Gitee",
+    "icon": "/images/icon/gitee.png",
+    "tip": "真不如Github",
+    "url": "https://gitee.com/HowXu"
+  },
+  {
+    "name": "X",
+    "icon": "/images/icon/x.png",
+    "tip": "不是你真有?",
+    "url": "#"
+  },
+  {
+    "name": "Telegram",
+    "icon": "/images/icon/telegram.png",
+    "tip": "不是哥们?",
+    "url": "#"
+  }
+]

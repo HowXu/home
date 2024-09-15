@@ -45,7 +45,7 @@ export const getPlayerList = async (server, type, id) => {
 
 // 获取一言数据
 export const getHitokoto = async () => {
-  const res = await fetch("https://v1.hitokoto.cn");
+  const res = await fetch("https://v1.hitokoto.cn/?c=d&c=i&c=j");//
   return await res.json();
 };
 

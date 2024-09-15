@@ -1,7 +1,12 @@
 <template>
   <div :class="store.mobileOpenState ? 'left hidden' : 'left'">
     <Message />
+    <!--
+    
     <SocialLinks />
+    <SocialLinks2 />
+
+    -->
   </div>
 </template>
 
@@ -9,6 +14,7 @@
 import { mainStore } from "@/store";
 import Message from "@/components/Message.vue";
 import SocialLinks from "@/components/SocialLinks.vue";
+import SocialLinks2 from "@/components/SocialLinks2.vue";
 const store = mainStore();
 </script>
 

@@ -4,9 +4,15 @@
       <Icon size="20">
         <Link />
       </Icon>
-      <span class="title">网站列表</span>
+      <span class="title">Contract me</span>
     </div>
     <!-- 网站列表 -->
+
+    <SocialLinks />
+    <SocialLinks2 />
+
+    <!--
+    
     <Swiper
       v-if="siteLinks[0]"
       :modules="[Pagination, Mousewheel]"
@@ -37,6 +43,8 @@
       </SwiperSlide>
       <div class="swiper-pagination" />
     </Swiper>
+    
+    -->
   </div>
 </template>
 
@@ -48,6 +56,10 @@ import { mainStore } from "@/store";
 import { Swiper, SwiperSlide } from "swiper/vue";
 import { Pagination, Mousewheel } from "swiper/modules";
 import siteLinks from "@/assets/siteLinks.json";
+
+import SocialLinks from "@/components/SocialLinks.vue";
+import SocialLinks2 from "@/components/SocialLinks2.vue";
+
 
 const store = mainStore();
 
