@@ -22,5 +22,11 @@
     "icon": "/images/icon/telegram.png",
     "tip": "不是哥们?",
     "url": "#"
+  },
+  {
+    "name": "Steam",
+    "icon": "/images/icon/steam.png",
+    "tip": "我真是高手",
+    "url": "https://steamcommunity.com/id/howxu366/"
   }
 ]
