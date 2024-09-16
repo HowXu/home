@@ -27,5 +27,11 @@
     "icon": "/images/icon/csdn.png",
     "tip": "这网站真的烂爆了",
     "url": "https://blog.csdn.net/m0_74075298"
+  },
+  {
+    "name": "Blog",
+    "icon": "/images/icon/blog.png",
+    "tip": "个人博客站",
+    "url": "https://blog.howxu.icu/"
   }
 ]
