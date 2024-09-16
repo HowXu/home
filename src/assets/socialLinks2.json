@@ -28,5 +28,10 @@
     "icon": "/images/icon/steam.png",
     "tip": "我真是高手",
     "url": "https://steamcommunity.com/id/howxu366/"
+  },{
+    "name": "Old",
+    "icon": "/images/icon/old.png",
+    "tip": "旧版主页",
+    "url": "https://old.howxu.icu"
   }
 ]
