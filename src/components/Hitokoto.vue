@@ -47,7 +47,9 @@ const hitokotoData = reactive({
 // 获取一言数据
 const getHitokotoData = async () => {
   try {
-    const result = await getHitokoto();
+    const result_arr = await getHitokoto();
+    const result = result_arr[Math.floor(Math.random() * (result_arr.length + 1))];
+    //console.log(result);
     hitokotoData.text = result.hitokoto;
     hitokotoData.from = result.from;
   } catch (error) {
