@@ -106,8 +106,9 @@ export default ({ mode }) =>
     css: {
       preprocessorOptions: {
         scss: {
-          charset: false,
-          additionalData: `@import "./src/style/global.scss";`,
+          api: 'modern',
+          additionalData: `@use "./src/style/global.scss" as *;`,
+          silenceDeprecations: ["legacy-js-api"],
         },
       },
     },
