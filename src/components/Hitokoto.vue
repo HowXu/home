@@ -48,8 +48,6 @@ const hitokotoData = reactive({
 const getHitokotoData = async () => {
   try {
     const result_arr = await getHitokoto();
-    const result = result_arr[Math.floor(Math.random() * (result_arr.length + 1))];
-    //console.log(result);
     hitokotoData.text = result.hitokoto;
     hitokotoData.from = result.from;
   } catch (error) {
@@ -61,7 +59,7 @@ const getHitokotoData = async () => {
       }),
     });
     hitokotoData.text = "这里应该显示一句话";
-    hitokotoData.from = "無名";
+    hitokotoData.from = "卡了";
   }
 };
 
