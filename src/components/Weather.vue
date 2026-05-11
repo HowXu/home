@@ -17,7 +17,7 @@
 import { getAdcode, getWeather, getOtherWeather } from "@/api";
 
 const mainKey = import.meta.env.VITE_WEATHER_KEY;
-console.log("[Weather] VITE_WEATHER_KEY:", mainKey ? "已配置" : "未配置");
+console.log("[Weather] VITE_WEATHER_KEY:", mainKey ? "已配置" : "未配置", mainKey);
 
 const weatherData = reactive({
   adCode: {
@@ -50,37 +50,41 @@ const getTemperature = (min, max) => {
 const getWeatherData = async () => {
   console.log("[Weather] getWeatherData started, mainKey:", mainKey);
   try {
-    if (!mainKey) {
-      console.log("[Weather] No API key, using fallback API");
+    if (!mainKey || mainKey.trim() === "") {
+      console.log("[Weather] No API key, using fallback API: api.oioweb.cn");
       const result = await getOtherWeather();
-      console.log("[Weather] getOtherWeather result:", result);
+      console.log("[Weather] getOtherWeather result:", JSON.stringify(result));
 
-      if (!result || !result.result) {
-        throw new Error("备用天气API返回数据格式错误: " + JSON.stringify(result));
+      if (!result) {
+        throw new Error("备用天气API返回空数据");
       }
 
-      const data = result.result;
-      if (!data.city || !data.condition) {
+      if (result.status !== undefined && result.status !== 1) {
+        throw new Error(`备用API错误: ${result.info || "未知错误"}`);
+      }
+
+      if (!result.result || !result.result.city || !result.result.condition) {
         throw new Error("备用天气API数据结构错误: " + JSON.stringify(result));
       }
 
+      const data = result.result;
       weatherData.adCode = {
-        city: data.city.City || "未知地区",
+        city: data.city?.City || data.city || "未知地区",
       };
       weatherData.weather = {
-        weather: data.condition.day_weather,
+        weather: data.condition.day_weather || data.condition.weather,
         temperature: getTemperature(data.condition.min_degree, data.condition.max_degree),
-        winddirection: data.condition.day_wind_direction,
-        windpower: data.condition.day_wind_power,
+        winddirection: data.condition.day_wind_direction || data.condition.winddirection,
+        windpower: data.condition.day_wind_power || data.condition.windpower,
       };
-      console.log("[Weather] Weather data updated:", weatherData);
+      console.log("[Weather] Weather data updated from fallback:", weatherData);
     } else {
-      console.log("[Weather] Using Amap API");
+      console.log("[Weather] Using Amap API, key:", mainKey.substring(0, 4) + "...");
       const adCode = await getAdcode(mainKey);
-      console.log("[Weather] getAdcode result:", adCode);
+      console.log("[Weather] getAdcode result:", JSON.stringify(adCode));
 
       if (adCode.infocode !== "10000") {
-        throw new Error(`地区查询失败, infocode: ${adCode.infocode}, info: ${adCode.info}`);
+        throw new Error(`地区查询失败: ${adCode.info || adCode.infocode}`);
       }
 
       weatherData.adCode = {
@@ -90,7 +94,7 @@ const getWeatherData = async () => {
       console.log("[Weather] adCode updated:", weatherData.adCode);
 
       const result = await getWeather(mainKey, weatherData.adCode.adcode);
-      console.log("[Weather] getWeather result:", result);
+      console.log("[Weather] getWeather result:", JSON.stringify(result));
 
       if (!result || !result.lives || !result.lives[0]) {
         throw new Error("天气API返回数据格式错误: " + JSON.stringify(result));
@@ -102,7 +106,7 @@ const getWeatherData = async () => {
         winddirection: result.lives[0].winddirection,
         windpower: result.lives[0].windpower,
       };
-      console.log("[Weather] Weather data updated:", weatherData);
+      console.log("[Weather] Weather data updated from Amap:", weatherData);
     }
   } catch (error) {
     console.error("[Weather] Error:", error);
