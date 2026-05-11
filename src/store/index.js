@@ -81,7 +81,7 @@ export const mainStore = defineStore("main", () => {
   };
 }, {
   persist: {
-    pick: [
+    paths: [
       "coverType",
       "musicVolume",
       "siteStartShow",
