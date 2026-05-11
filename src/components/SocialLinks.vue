@@ -9,7 +9,7 @@
         @mouseenter="socialTip = item.tip"
         @mouseleave="socialTip = defaultTip"
       >
-        <img class="icon" :src="item.icon" height="24" />
+        <i :class="item.icon" class="icon" height="24" />
       </a>
     </div>
     <span class="tip">{{ socialTip }}</span>
@@ -43,7 +43,7 @@ const socialTip = ref(defaultTip);
   display: flex;
   align-items: center;
   justify-content: space-between;
-  max-width: 460px;
+  max-width: 480px;
   width: 100%;
   height: 42px;
   background-color: transparent;

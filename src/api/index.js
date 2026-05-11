@@ -82,11 +82,3 @@ export const getWeather = async (key, city) => {
   console.log("[Amap API] getWeather Response:", data);
   return data;
 };
-
-export const getOtherWeather = async () => {
-  console.log("[Weather API] getOtherWeather Request - using fallback API");
-  const res = await fetch("https://api.oioweb.cn/api/weather/GetWeather");
-  const data = await res.json();
-  console.log("[Weather API] getOtherWeather Response:", data);
-  return data;
-};

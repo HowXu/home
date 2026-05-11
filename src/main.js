@@ -1,5 +1,6 @@
 import { createApp } from "vue";
 import "@/style/style.scss";
+import '@fortawesome/fontawesome-free/css/all.min.css'
 import App from "@/App.vue";
 import { createPinia } from "pinia";
 import piniaPluginPersistedstate from "pinia-plugin-persistedstate";

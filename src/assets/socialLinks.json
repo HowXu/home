@@ -1,36 +1,36 @@
 [
   {
     "name": "Github",
-    "icon": "/images/icon/github.png",
+    "icon": "fa-brands fa-github",
     "tip": "去 Github 看看",
     "url": "https://github.com/howxu"
   },
   {
     "name": "BiliBili",
-    "icon": "/images/icon/bilibili.png",
+    "icon": "fa-brands fa-bilibili",
     "tip": "(゜-゜)つロ 干杯 ~",
     "url": "https://space.bilibili.com/398016845"
   },
   {
     "name": "QQ",
-    "icon": "/images/icon/qq.png",
+    "icon": "fa-brands fa-qq",
     "tip": "这你都加啊",
     "url": "https://res.abeim.cn/api/qq/?qq=672252397"
   },
   {
     "name": "Email",
-    "icon": "/images/icon/email.png",
+    "icon": "fa-solid fa-envelope",
     "tip": "来封 Email ~",
     "url": "mailto:howxu366@outlook.com"
   },{
     "name": "CSDN",
-    "icon": "/images/icon/csdn.png",
-    "tip": "这网站真的烂爆了",
+    "icon": "fa-solid fa-c",
+    "tip": "这网站真的烂",
     "url": "https://blog.csdn.net/m0_74075298"
   },
   {
     "name": "Blog",
-    "icon": "/images/icon/blog.png",
+    "icon": "fa-brands fa-wordpress",
     "tip": "个人博客站",
     "url": "https://blog.howxu.cn/"
   }

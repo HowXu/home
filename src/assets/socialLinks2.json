@@ -1,36 +1,36 @@
 [
   {
     "name": "WYY",
-    "icon": "/images/icon/wyy.png",
+    "icon": "fa-solid fa-music",
     "tip": "听点小曲",
     "url": "https://music.163.com/#/user/home?id=1653714069"
   },
   {
     "name": "Gitee",
-    "icon": "/images/icon/gitee.png",
+    "icon": "fa-brands fa-gitee",
     "tip": "真不如Github",
     "url": "https://gitee.com/HowXu"
   },
   {
     "name": "X",
-    "icon": "/images/icon/x.png",
+    "icon": "fa-brands fa-x-twitter",
     "tip": "不是你真有?",
     "url": "#"
   },
   {
     "name": "Telegram",
-    "icon": "/images/icon/telegram.png",
+    "icon": "fa-brands fa-telegram",
     "tip": "不是哥们?",
     "url": "#"
   },
   {
     "name": "Steam",
-    "icon": "/images/icon/steam.png",
-    "tip": "我真是高手",
+    "icon": "fa-brands fa-steam",
+    "tip": "高手",
     "url": "https://steamcommunity.com/id/howxu366/"
   },{
     "name": "Old",
-    "icon": "/images/icon/old.png",
+    "icon": "fa-solid fa-book-tanakh",
     "tip": "旧版主页",
     "url": "https://howxu.cn"
   }
