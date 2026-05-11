@@ -49,7 +49,6 @@ const changeBg = (type) => {
   }
 };
 
-// 图片加载完成
 const imgLoadComplete = () => {
   imgTimeout.value = setTimeout(
     () => {
@@ -59,16 +58,11 @@ const imgLoadComplete = () => {
   );
 };
 
-// 图片动画完成
 const imgAnimationEnd = () => {
-  console.log("壁纸加载且动画完成");
-  // 加载完成事件
   emit("loadComplete");
 };
 
-// 图片显示失败
 const imgLoadError = () => {
-  console.error("壁纸加载失败：", bgUrl.value);
   ElMessage({
     message: "壁纸加载失败，已临时切换回默认",
     icon: h(Error, {

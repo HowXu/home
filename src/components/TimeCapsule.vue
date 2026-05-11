@@ -32,7 +32,6 @@ import { getTimeCapsule, siteDateStatistics } from "@/utils/getTime.js";
 import { mainStore } from "@/store";
 const store = mainStore();
 
-// 进度条数据
 const timeData = ref(getTimeCapsule());
 const startDate = ref(import.meta.env.VITE_SITE_START);
 const startDateText = ref(null);

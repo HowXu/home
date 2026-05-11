@@ -12,10 +12,9 @@ const lerp = (a, b, n) => {
 const getStyle = (el, attr) => {
   try {
     return window.getComputedStyle ? window.getComputedStyle(el)[attr] : el.currentStyle[attr];
-  } catch (e) {
-    console.error(e);
+  } catch {
+    return false;
   }
-  return false;
 };
 
 const cursorInit = () => {

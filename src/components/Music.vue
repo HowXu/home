@@ -23,8 +23,8 @@
     <div class="menu">
       <div class="name" v-show="!volumeShow">
         <span>{{
-          store.getPlayerData.name
-            ? store.getPlayerData.name + " - " + store.getPlayerData.artist
+          store.playerTitle
+            ? store.playerTitle + " - " + store.playerArtist
             : "未播放音乐"
         }}</span>
       </div>
@@ -83,11 +83,9 @@ import Player from "@/components/Player.vue";
 import { mainStore } from "@/store";
 const store = mainStore();
 
-// 音量条数据
 const volumeShow = ref(false);
 const volumeNum = ref(store.musicVolume ? store.musicVolume : 0.7);
 
-// 播放列表数据
 const musicListShow = ref(false);
 const playerRef = ref(null);
 const playerData = reactive({
@@ -96,43 +94,34 @@ const playerData = reactive({
   id: import.meta.env.VITE_SONG_ID,
 });
 
-// 开启播放列表
 const openMusicList = () => {
   musicListShow.value = true;
   playerRef.value.toggleList();
 };
 
-// 关闭播放列表
 const closeMusicList = () => {
   musicListShow.value = false;
   playerRef.value.toggleList();
 };
 
-// 音乐播放暂停
 const changePlayState = () => {
   playerRef.value.playToggle();
 };
 
-// 音乐上下曲
 const changeMusicIndex = (type) => {
   playerRef.value.changeSong(type);
 };
 
 onMounted(() => {
-  // 空格键事件
   window.addEventListener("keydown", (e) => {
-    if (!store.musicIsOk) {
-      return;
-    }
-    if (e.code == "Space") {
+    if (!store.musicIsOk) return;
+    if (e.code === "Space") {
       changePlayState();
     }
   });
-  // 挂载方法至 window
   window.$openList = openMusicList;
 });
 
-// 监听音量变化
 watch(
   () => volumeNum.value,
   (value) => {

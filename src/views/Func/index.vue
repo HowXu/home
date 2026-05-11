@@ -1,5 +1,4 @@
 <template>
-  <!-- 功能区域 -->
   <div :class="store.mobileFuncState ? 'function mobile' : 'function'">
     <el-row :gutter="20">
       <el-col :span="12">
@@ -37,14 +36,10 @@ import Weather from "@/components/Weather.vue";
 
 const store = mainStore();
 
-// 当前时间
 const currentTime = ref({});
 const timeInterval = ref(null);
-
-// 播放器 id
 const playerHasId = import.meta.env.VITE_SONG_ID;
 
-// 更新时间
 const updateTimeData = () => {
   currentTime.value = getCurrentTime();
 };

@@ -1,6 +1,5 @@
 <template>
-  <!-- 社交链接 -->
-  <div class="social">
+  <div class="social" :class="{ 'social-2': source === 'socialLinks2' }">
     <div class="link">
       <a
         v-for="item in socialLinks"
@@ -8,7 +7,7 @@
         :href="item.url"
         target="_blank"
         @mouseenter="socialTip = item.tip"
-        @mouseleave="socialTip = '通过这里联系我吧'"
+        @mouseleave="socialTip = defaultTip"
       >
         <img class="icon" :src="item.icon" height="24" />
       </a>
@@ -18,10 +17,24 @@
 </template>
 
 <script setup>
-import socialLinks from "@/assets/socialLinks.json";
+import socialLinksData from "@/assets/socialLinks.json";
+import socialLinks2Data from "@/assets/socialLinks2.json";
 
-// 社交链接提示
-const socialTip = ref("通过这里联系我吧");
+const props = defineProps({
+  source: {
+    type: String,
+    default: "socialLinks",
+  },
+});
+
+const socialLinksMap = {
+  socialLinks: socialLinksData,
+  socialLinks2: socialLinks2Data,
+};
+
+const socialLinks = socialLinksMap[props.source] || socialLinksData;
+const defaultTip = "通过这里联系我吧";
+const socialTip = ref(defaultTip);
 </script>
 
 <style lang="scss" scoped>

@@ -31,27 +31,23 @@
 import { MusicMenu, Error } from "@icon-park/vue-next";
 import { getHitokoto } from "@/api";
 import { mainStore } from "@/store";
-import debounce from "@/utils/debounce.js";
+import { debounce } from "@/utils/debounce";
 
 const store = mainStore();
 
-// 开启音乐面板按钮显隐
 const openMusicShow = ref(false);
 
-// 一言数据
 const hitokotoData = reactive({
   text: "这里应该显示一句话",
   from: "無名",
 });
 
-// 获取一言数据
 const getHitokotoData = async () => {
   try {
     const result = await getHitokoto();
     hitokotoData.text = result.hitokoto;
     hitokotoData.from = result.from;
   } catch (error) {
-    console.log(error)
     ElMessage({
       message: "一言获取失败",
       icon: h(Error, {
@@ -64,13 +60,9 @@ const getHitokotoData = async () => {
   }
 };
 
-// 更新一言数据
-const updateHitokoto = () => {
-  // 防抖
-  debounce(() => {
-    getHitokotoData();
-  }, 500);
-};
+const updateHitokoto = debounce(() => {
+  getHitokotoData();
+}, 500);
 
 onMounted(() => {
   getHitokotoData();

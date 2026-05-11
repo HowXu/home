@@ -1,21 +1,39 @@
-// import axios from "axios";
-import fetchJsonp from "fetch-jsonp";
+const jsonp = (url) => {
+  return new Promise((resolve, reject) => {
+    const callbackName = `jsonp_${Date.now()}_${Math.random().toString(36).slice(2)}`;
+    const script = document.createElement("script");
+    script.type = "text/javascript";
+    script.src = `${url}${url.includes("?") ? "&" : "?"}callback=${callbackName}`;
+    script.onerror = () => {
+      if (window[callbackName]) {
+        delete window[callbackName];
+      }
+      reject(new Error(`JSONP request failed: ${url}`));
+    };
+    window[callbackName] = (data) => {
+      if (script.parentNode) {
+        script.parentNode.removeChild(script);
+      }
+      delete window[callbackName];
+      resolve(data);
+    };
+    document.head.appendChild(script);
+  });
+};
 
-/**
- * 音乐播放器
- */
-
-// 获取音乐播放列表
 export const getPlayerList = async (server, type, id) => {
+  console.log(`[Music API] Request - server: ${server}, type: ${type}, id: ${id}`);
   const res = await fetch(
     `${import.meta.env.VITE_SONG_API}?server=${server}&type=${type}&id=${id}`,
   );
   const data = await res.json();
+  console.log(`[Music API] Response:`, data);
 
   if (data[0].url.startsWith("@")) {
-    // eslint-disable-next-line no-unused-vars
     const [handle, jsonpCallback, jsonpCallbackFunction, url] = data[0].url.split("@").slice(1);
-    const jsonpData = await fetchJsonp(url).then((res) => res.json());
+    console.log(`[Music API] Using JSONP for: ${url}`);
+    const jsonpData = await jsonp(url);
+    console.log(`[Music API] JSONP Response:`, jsonpData);
     const domain = (
       jsonpData.req_0.data.sip.find((i) => !i.startsWith("http://ws")) ||
       jsonpData.req_0.data.sip[0]
@@ -39,37 +57,36 @@ export const getPlayerList = async (server, type, id) => {
   }
 };
 
-/**
- * 一言
- */
-
-// 获取一言数据
 export const getHitokoto = async () => {
-  const res = await fetch("https://hittoken.vercel.app/");
-  return await res.json();
+  console.log("[Hitokoto API] Request");
+  const res = await fetch("https://hittoken.howxu.cn/");
+  const data = await res.json();
+  console.log("[Hitokoto API] Response:", data);
+  return data;
 };
 
-/**
- * 天气
- */
-
-// 获取高德地理位置信息
 export const getAdcode = async (key) => {
+  console.log("[Amap API] getAdcode Request - key:", key);
   const res = await fetch(`https://restapi.amap.com/v3/ip?key=${key}`);
-  return await res.json();
+  const data = await res.json();
+  console.log("[Amap API] getAdcode Response:", data);
+  return data;
 };
 
-// 获取高德地理天气信息
 export const getWeather = async (key, city) => {
+  console.log(`[Amap API] getWeather Request - key: ${key}, city: ${city}`);
   const res = await fetch(
     `https://restapi.amap.com/v3/weather/weatherInfo?key=${key}&city=${city}`,
   );
-  return await res.json();
+  const data = await res.json();
+  console.log("[Amap API] getWeather Response:", data);
+  return data;
 };
 
-// 获取教书先生天气 API
-// https://api.oioweb.cn/doc/weather/GetWeather
 export const getOtherWeather = async () => {
+  console.log("[Weather API] getOtherWeather Request - using fallback API");
   const res = await fetch("https://api.oioweb.cn/api/weather/GetWeather");
-  return await res.json();
+  const data = await res.json();
+  console.log("[Weather API] getOtherWeather Response:", data);
+  return data;
 };

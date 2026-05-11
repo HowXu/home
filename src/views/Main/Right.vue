@@ -14,26 +14,15 @@
 
 <script setup>
 import { mainStore } from "@/store";
+import { getSiteUrl } from "@/utils/url";
 import Func from "@/views/Func/index.vue";
 import Link from "@/components/Links.vue";
 const store = mainStore();
-
-// 站点链接
-const siteUrl = computed(() => {
-  const url = import.meta.env.VITE_SITE_URL;
-  if (!url) return "imsyy.top".split(".");
-  // 判断协议前缀
-  if (url.startsWith("http://") || url.startsWith("https://")) {
-    const urlFormat = url.replace(/^(https?:\/\/)/, "");
-    return urlFormat.split(".");
-  }
-  return url.split(".");
-});
+const siteUrl = getSiteUrl();
 </script>
 
 <style lang="scss" scoped>
 .right {
-  // flex: 1 0 0%;
   width: 50%;
   margin-left: 0.75rem;
   .logo {
