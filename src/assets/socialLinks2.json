@@ -2,25 +2,25 @@
   {
     "name": "WYY",
     "icon": "fa-solid fa-music",
-    "tip": "听点小曲",
+    "tip": "幸福的人不常听歌",
     "url": "https://music.163.com/#/user/home?id=1653714069"
   },
   {
     "name": "Gitee",
     "icon": "fa-brands fa-gitee",
-    "tip": "真不如Github",
+    "tip": "Github广告版",
     "url": "https://gitee.com/HowXu"
   },
   {
     "name": "X",
     "icon": "fa-brands fa-x-twitter",
-    "tip": "不是你真有?",
+    "tip": "关注Tibo谢谢喵",
     "url": "#"
   },
   {
     "name": "Telegram",
     "icon": "fa-brands fa-telegram",
-    "tip": "不是哥们?",
+    "tip": "这个不兴加",
     "url": "#"
   },
   {
